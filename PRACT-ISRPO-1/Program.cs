@@ -1,53 +1,50 @@
-﻿// создание двумерной матрицы
-double[,] matr =
+﻿int m = 3; //количество строк
+int n = 4; //количество столбцов
+
+double[,] matrix = {
+            {5.9, 2.3, 8.1, 3.7},
+            {1.2, 4.5, 6.2, 0.9},
+            {3.4, 7.8, 2.1, 5.6}
+        };
+
+SortMatrixDescending(matrix, m, n);
+
+Console.WriteLine("Отсортированная матрица:");
+for (int i = 0; i < m; i++)
 {
-     { 5.4, 2.7, 9.1 },
-{ 3.2, 8.6, 1.5 },
-{ 7.8, 6.3, 4.9 }
-};
-// преобразование из двумерной матрицы в одномерную
-int rowCount = matr.GetLength(0);
-int colCount = matr.GetLength(1);
-double[] flattenedMatrix = new double[rowCount * colCount];
-int index = 0;
-for (int i = 0; i < rowCount; i++)
-{
-    for (int j = 0; j < colCount; j++)
+    for (int j = 0; j < n; j++)
     {
-        flattenedMatrix[index] = matr[i, j];
-        index++;
+        Console.Write(matrix[i, j] + " ");
     }
-}
-// Сортируем одномерный массив по убыванию
-
-static void sortmatrix(double[] flattenedMatrix)
-{
-
-    Array.Sort(flattenedMatrix, (a, b) => b.CompareTo(a));
+    Console.WriteLine();
 }
 
 
-// Вывод отсортированной матрицы
- void printmatr(double[,] matr)
+static void SortMatrixDescending(double[,] matrix, int m, int n)
 {
+    double[] temp = new double[m * n];
+    int index = 0;
 
-    index = 0;
-    for (int i = 0; i < rowCount; i++)
+    for (int i = 0; i < m; i++)
     {
-        for (int j = 0; j < colCount; j++)
+        for (int j = 0; j < n; j++)
         {
-            matr[i, j] = flattenedMatrix[index];
+            temp[index] = matrix[i, j];
             index++;
         }
     }
 
-    for (int i = 0; i < rowCount; i++)
+    Array.Sort(temp);
+    Array.Reverse(temp);
+
+    index = 0;
+
+    for (int i = 0; i < m; i++)
     {
-        for (int j = 0; j < colCount; j++)
+        for (int j = 0; j < n; j++)
         {
-            Console.Write(matr[i, j] + " ");
+            matrix[i, j] = temp[index];
+            index++;
         }
-        Console.WriteLine();
     }
 }
-printmatr(matr);
