@@ -19,24 +19,35 @@ for (int i = 0; i < rowCount; i++)
     }
 }
 // Сортируем одномерный массив по убыванию
-Array.Sort(flattenedMatrix, (a, b) => b.CompareTo(a));
+
+static void sortmatrix(double[] flattenedMatrix)
+{
+
+    Array.Sort(flattenedMatrix, (a, b) => b.CompareTo(a));
+}
+
 
 // Вывод отсортированной матрицы
-index = 0;
-for (int i = 0; i < rowCount; i++)
+ void printmatr(double[,] matr)
 {
-    for (int j = 0; j < colCount; j++)
-    {
-        matr[i, j] = flattenedMatrix[index];
-        index++;
-    }
-}
 
-for (int i = 0; i < rowCount; i++)
-{
-    for (int j = 0; j < colCount; j++)
+    index = 0;
+    for (int i = 0; i < rowCount; i++)
     {
-        Console.Write(matr[i, j] + " ");
+        for (int j = 0; j < colCount; j++)
+        {
+            matr[i, j] = flattenedMatrix[index];
+            index++;
+        }
     }
-    Console.WriteLine();
+
+    for (int i = 0; i < rowCount; i++)
+    {
+        for (int j = 0; j < colCount; j++)
+        {
+            Console.Write(matr[i, j] + " ");
+        }
+        Console.WriteLine();
+    }
 }
+printmatr(matr);
